@@ -1,9 +1,13 @@
 <script setup>
-
+import Navbar from '../components/Navbar.vue'
+import Footer from '../components/Footer.vue'
+import Tasks from '../components/Tasks.vue'
 </script>
 
 <template>
-    <h1>Componente Dashboard</h1>
+    <Navbar></Navbar>
+    <Tasks></Tasks>
+    <Footer></Footer>
 </template>
 
 <style scoped></style>

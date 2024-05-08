@@ -20,20 +20,25 @@
     display: flex;
     margin-top: 95%;
     width: 100vw;
-    background-color: rgb(214, 222, 230);
+    height: 8vh;
+    background-color:#FFFFCC ;
 }
-.address{
+.foot-style address{
+    padding-left: 20px;
+    padding-right: 20px;
     font-style: normal;
     font-size: 0.8em;
 }
 
+
 ul{
     list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
 }
 ul a{
-    display: flex;
-    flex-direction: row;
     text-decoration: none;
 }
-
 </style>

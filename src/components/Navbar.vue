@@ -1,13 +1,15 @@
 <script setup>
-import { ref } from 'vue'
-const navbarTab = ref (['Home', 'Tasks', 'Contact Us'])
+import { useUserStore } from '../stores/user.js'
+const userStore = useUserStore()
 </script>
 
 <template>
   <section>
     <nav>
         <ul class="navbar">
-            <li v-for="element in navbarTab" :key="element">{{ element }}</li>
+            <li >Home</li>
+            <li >Tasks</li>
+            <button @click="userStore.logOut"> Log Out</button>
         </ul>
     </nav>
 
@@ -15,15 +17,21 @@ const navbarTab = ref (['Home', 'Tasks', 'Contact Us'])
 </template>
 
 <style scoped>
-
+nav{
+  width: 100vw;
+  height: 6vh;
+  background-color:#FFFFCC ;
+}
 .navbar {
   display: flex;
   flex-direction: row;
-  align-content: space-between;
-  gap: 50px;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
   list-style-type: none;
-  padding-left: 200px;
-  padding-top: 50px;
+  margin-left: 30% ;
+  padding-top: 2vh;
+  color: grey;
 }
 
 </style>

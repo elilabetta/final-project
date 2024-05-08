@@ -26,13 +26,14 @@ onMounted(async () => {
     console.log(e)
   }
 })
+
 </script>
 
 <template>
   <section>
-    <Navbar></Navbar>
-    <router-view class="app-main" /> <!-- your routes will load inside of these tags -->
-    <Footer></Footer>
+   
+    <router-view/> <!-- your routes will load inside of these tags -->
+   
   </section>
 </template>
 
