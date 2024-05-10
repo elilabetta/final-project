@@ -1,36 +1,42 @@
-// /store/task.js
- 
-import { defineStore } from "pinia";
-import { supabase } from "../supabase";
- 
-export const useTaskStore = defineStore("tasks", {
+import { defineStore } from 'pinia'
+import { supabase } from '../supabase'
+import { useUserStore } from '../stores/user.js'
+import router from '@/router';
+
+export const useTaskStore = defineStore('task', {
   state: () => ({
-    tasks: null,
+    tasks: null
   }),
-
-
   actions: {
     async fetchTasks() {
-      const { data: tasks } = await supabase
-        .from("tasks")
-        .select("*")
-        .order("id", { ascending: false });
-      this.tasks = tasks;
-    },
-    async function addTask(newTaskTitle) {
-      const newTaskTitle = true,
-      if (!newTaskTitle) return;
-    
-      const { data, error } = await supabase
+      const { data: tasks, error } = await supabase
         .from('tasks')
-        .insert([{ title: newTaskTitle }])
-        .single();
-    
-      if (!error) {
-        tasks.value.unshift(data);
-      } else {
-        console.error('Errore nell’aggiungere nuova task:', error.message);
-      }
-     },
+        .select('*')
+        .order('id', { ascending: false })
+      if (error) console.error('Error to get back the task:', error)
+      else this.tasks = tasks
     },
-});
+    async addTask(title, description) {
+      const { data, error} = await supabase
+      .from('tasks')
+      .insert({
+        user_id: useUserStore().user.id,
+        title: title,
+        description: description
+      })
+      await this.fetchTasks()
+      router.push('/')
+    },
+    async editTask(id, updatedFields) {
+      const { error } = await supabase.from('tasks').update(updatedFields).eq('id', id)
+      if (error) console.error('Error updating task:', error.message)
+      else await this.fetchTasks() 
+      router.push ('/')// Ricarica la lista delle task dopo l'aggiornamento
+    },
+    async deleteTask(id) {
+      const { error } = await supabase.from('tasks').delete().eq('id', id)
+      if (error) console.error('Error delating task:', error)
+      else this.tasks = this.tasks.filter((task) => task.id !== id) // Aggiorna lo stato locale
+    }
+  }
+})

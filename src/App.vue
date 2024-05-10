@@ -3,13 +3,15 @@ import { onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useRouter } from 'vue-router'
 import { useUserStore } from './stores/user.js'
+import { useTaskStore } from './stores/task.js'
 
-import Navbar from './components/Navbar.vue'
-import Footer from './components/Footer.vue'
+
  
 const router = useRouter()
 const userStore = useUserStore()
 const { user } = storeToRefs(userStore)
+const taskStore = useTaskStore()
+const { tasks } = storeToRefs(taskStore)
  
 onMounted(async () => {
   try {

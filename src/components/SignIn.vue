@@ -11,6 +11,8 @@ const password = ref("")
 
 </script>
 <template>
+  <div>
+    <img src="src/assets/ToDoList.webp" alt=""/>
     <form @submit.prevent="userStore.signIn(email, password)" id="form">
       <h1>Sign In</h1>
       <div class="style">
@@ -22,10 +24,15 @@ const password = ref("")
       <div class="style">
         <button type="submit">Sign In</button>
       </div>
-  </form>
+    </form>
+  </div>
+    
 </template>
 <style scoped>
-
+img{
+  width: 500px;
+  height: 400px;
+}
 #form{
   margin-left: 30vw;
   margin-right: 35vw;
