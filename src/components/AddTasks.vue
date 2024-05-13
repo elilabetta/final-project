@@ -12,6 +12,9 @@ const userStore = useUserStore()
 const taskStore = useTaskStore()
 const { tasks } = storeToRefs(taskStore)
 const router = useRouter()
+const completeTask = (id) => {
+  taskStore.completeTask(id)
+}
 
 onMounted(() => {
   taskStore.fetchTasks()
@@ -33,43 +36,62 @@ const editTask = (id, updateFields) => {
 }
 
 const saveTask = (id, updateFields) => {
-  taskStore.saveTask(id, updateFields)
+  taskStore.editTask(id, updateFields)
   title.value = ''
   description.value = ''
 }
+
 </script>
 
 <template>
-  <div class="container">
+
+  <section class="page-bg">
+    <div class="container">
     <div class="card">
       <form @submit.prevent="addNewTask" class="task-form">
         <h1>My New Cool Task</h1>
         <div class="form-group">
-          <label for="title">Titolo Task:</label>
-          <input id="title" v-model="title" placeholder="Inserisci il titolo" />
+          <label for="title">Task Title:</label>
+          <input id="title" v-model="title" placeholder="Title" />
         </div>
         <div class="form-group">
-          <label for="description">Descrizione Task:</label>
-          <textarea id="description" v-model="description" placeholder="Inserisci la descrizione"></textarea>
+          <label for="description">Task description:</label>
+          <textarea id="description" v-model="description" placeholder="Description"></textarea>
         </div>
-        <button type="submit">Aggiungi Task</button>
+        <button type="submit">Add Task</button>
       </form>
     </div>
 
     <div v-if="!tasks" class="card">
-      <p>Nessun task disponibile</p>
+      <p>No task available</p>
     </div>
 
     <div class="task-list">
-      <div v-for="task in tasks" :key="task.id" class="card">
-        <TaskCard :task="task" @edit-task="editTask" @delete-task="deleteTask" @save-task="saveTask"/>
+      <div v-for="task in tasks" :key="task.id" >
+        <TaskCard :task="task" @edit-task="editTask" @complete-task="completeTask" @delete-task="deleteTask" @save-task="saveTask"/>
       </div>
     </div>
   </div>
+
+  </section>
+  
 </template>
 
 <style scoped>
+
+.page-bg {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-image: url('../assets/ToDoList.webp');
+  background-size: cover; 
+  background-position: center;
+}
+
 .container {
+  padding: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -82,7 +104,7 @@ const saveTask = (id, updateFields) => {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 100px;
 }
 
 .task-form {
@@ -105,7 +127,7 @@ const saveTask = (id, updateFields) => {
   padding: 8px;
   font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 5px;
   box-sizing: border-box;
 }
 

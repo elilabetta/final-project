@@ -10,7 +10,7 @@
         <ul>
             <li> <a href=https://www.youtube.com/c/ironhack-tech-school>YouTube</a> </li>
             <li> <a href=https://www.facebook.com/theironhack>Facebook</a> </li>
-            <li> <a href=https://www.instagram.com/ironhack>Instagramm</a> </li>
+            <li> <a href=https://www.instagram.com/ironhack>Instagram</a> </li>
         </ul>
     </footer>
 </template>
@@ -18,9 +18,13 @@
 <style scoped>
 .foot-style{ 
     display: flex;
-    margin-top: 95%;
+    flex-direction: row;
     width: 100vw;
     height: 8vh;
+    padding-top: 25px;
+    padding-right: 20px;
+    justify-content: space-between;
+    align-items: center;
     background-color:#FFFFCC ;
 }
 .foot-style address{

@@ -5,34 +5,71 @@ const userStore = useUserStore()
 
 <template>
     <div>
-      <nav>
-        <img src="./src/assets/IronHacklogo.png" alt="ToDo List" />
+      <nav class="container">
+        <img class="container-logo" src="../assets/IronHacklogo.png" alt= "ToDo List" />
         <ul class="navbar">
-          <li><a ref="../components/SignIn.vue"> Home </a></li>
-          <li><a ref="../components/Tasks.vue">Tasks</a></li>
-          <li>Profile</li>
-          <li><a ref="https://www.ironhack.com/es/contacto"> Contact Us</a></li>
-          <button @click="userStore.logOut">Log Out</button>
+          <li class="nav-item"><a ref="../components/SignIn.vue"> Home </a></li>
+          <li class="nav-item"><a ref="../components/Tasks.vue">Tasks</a></li>
+          <li class="nav-item">Profile</li>
+          <li class="nav-item"><a ref="https://www.ironhack.com/es/contacto"> Contact Us</a></li>
+          <button class="logout-button" @click="userStore.logOut">Log Out</button>
         </ul>
       </nav>
     </div>
 </template>
 
 <style scoped>
-nav {
-  width: 100vw;
-  height: 6vh;
-  background-color: #ffffcc;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.navbar {
+
+.container {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 100px;
-  list-style-type: none;
-  margin-left: 30%;
-  padding-top: 2vh;
+  background-color: #a0a7af; /* A dark, modest blue */
+  padding: 10px 20px;
+}
+
+.container-logo {
+  height: 50px;
+  border-radius: 5px;
+}
+
+.navbar {
+  list-style: none;
+  display: flex;
+  gap: 20px; /* Spacing between nav items */
+}
+
+.nav-item {
+  margin-left: 20px; /* Spacing between nav items */
+  font-weight: bold;
   color: grey;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #ecf0f1; /* A soft, almost white color */
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.nav-link:hover {
+  color: #3498db; /* Lighter blue on hover */
+}
+
+.logout-button {
+  padding: 5px 10px;
+  background-color: #e74c3c; /* A moderate red */
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #c0392b; /* Darker shade of red on hover */
 }
 </style>

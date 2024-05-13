@@ -11,4 +11,6 @@ import AddTasks from '../components/AddTasks.vue'
     <Footer></Footer>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>

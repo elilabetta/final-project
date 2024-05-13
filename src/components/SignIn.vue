@@ -12,7 +12,7 @@ const password = ref("")
 </script>
 <template>
   <div>
-    <img src="src/assets/ToDoList.webp" alt=""/>
+    <img src="../assets/ToDoList.webp" alt=""/>
     <form @submit.prevent="userStore.signIn(email, password)" id="form">
       <h1>Sign In</h1>
       <div class="style">

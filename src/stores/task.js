@@ -36,7 +36,32 @@ export const useTaskStore = defineStore('task', {
     async deleteTask(id) {
       const { error } = await supabase.from('tasks').delete().eq('id', id)
       if (error) console.error('Error delating task:', error)
-      else this.tasks = this.tasks.filter((task) => task.id !== id) // Aggiorna lo stato locale
+      else this.tasks = this.tasks.filter((task) => task.id !== id) // update tasks status
+    },
+   
+    async completeTask(task) {
+      const { error } = await supabase
+        .from('tasks')
+        .update({ 
+          title: task.title, 
+          description: task.description,
+          completed: task.completed,
+          is_complete: task.complete
+         })
+        .eq('id', task.id);
+      
+      if (error) console.error('Error completing task:', error);
+      else await this.fetchTasks(); 
+    },
+    async completeTask(task) {
+      const { error } = await supabase
+        .from('tasks')
+        .update({ is_complete: !task.is_complete }) // Asegúrese de cambiar aquí basado en lo que ya tiene
+        .eq('id', task.id);
+    
+      if (error) console.error('Error completing task:', error);
+      else await this.fetchTasks();  // Esto refrescará la lista y mostrará el estado actualizado de las tareas
     }
+    
   }
 })
