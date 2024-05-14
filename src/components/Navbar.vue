@@ -6,7 +6,8 @@ const userStore = useUserStore()
 <template>
     <div>
       <nav class="container">
-        <img class="container-logo" src="../assets/IronHacklogo.png" alt= "ToDo List" />
+        <img class="container-logo" src="../assets/IronHacklogo.png" alt= ""> 
+        <p>ToDo List</p>
         <ul class="navbar">
           <li class="nav-item"><a ref="../components/SignIn.vue"> Home </a></li>
           <li class="nav-item"><a ref="../components/Tasks.vue">Tasks</a></li>
@@ -29,15 +30,20 @@ const userStore = useUserStore()
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #a0a7af; /* A dark, modest blue */
+  background-color: #f5e6b1b6; 
   padding: 10px 20px;
 }
 
 .container-logo {
   height: 50px;
   border-radius: 5px;
+  margin-right: none;
 }
-
+.container p {
+  font-size: 20px;
+  font-weight: bold;
+  color:#4bcffb;
+}
 .navbar {
   list-style: none;
   display: flex;
@@ -50,21 +56,13 @@ const userStore = useUserStore()
   color: grey;
 }
 
-.nav-link {
-  text-decoration: none;
-  color: #ecf0f1; /* A soft, almost white color */
-  transition: color 0.3s ease; /* Smooth transition for hover effect */
-}
-
-.nav-link:hover {
-  color: #3498db; /* Lighter blue on hover */
-}
-
 .logout-button {
   padding: 5px 10px;
-  background-color: #e74c3c; /* A moderate red */
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
   border: none;
-  color: white;
+  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }

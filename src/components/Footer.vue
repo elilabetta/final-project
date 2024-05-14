@@ -25,7 +25,7 @@
     padding-right: 20px;
     justify-content: space-between;
     align-items: center;
-    background-color:#FFFFCC ;
+    background-color:#f5e6b1b6;
 }
 .foot-style address{
     padding-left: 20px;

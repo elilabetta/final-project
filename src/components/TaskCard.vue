@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, defineEmits, ref } from 'vue'
+import { defineProps, defineEmits, ref, vModelCheckbox } from 'vue'
 import { useTaskStore } from '../stores/task.js'
 const taskStore = useTaskStore()
 const props = defineProps({
@@ -33,15 +33,18 @@ async function completeTask(task) {
 
 <template>
   <article class="card" :class="{ 'is-complete': localTask.is_complete }">
-    <h2>Ongoing Task</h2>
+    <h2 v-if="!localTask.is_complete">Ongoing Task</h2>
+    <span v-else> 🏆 Task Completed! 🏆</span>
     <div v-if="!isEditable">
-      <h3>Title</h3>
+      <h3>Task Title:</h3>
       <p>{{ localTask.title }}</p>
-      <h4>Description</h4>
+      <h3>Task Description:</h3>
       <p>{{ localTask.description }}</p>
     </div>
-    <div v-if="isEditable">
+    <div v-if="isEditable"> <!-- he intentado poner aqui && !localTask.is_complete no funciona-->
+      <label for="editTitle">Edit Title:</label> 
       <input type="text" v-model="localTask.title" />
+      <label for="editDescription">Edit Description:</label>
       <input type="text" v-model="localTask.description" />
     </div>
     <button
@@ -51,45 +54,39 @@ async function completeTask(task) {
         }
       "
     >
-      Edit Task
+    ✏️
     </button>
     <button v-if="isEditable" @click="saveTask(task.id, localTask)">Save!</button>
-    <button v-if="!isEditable" @click="deleteTask(task.id)" class="delete-button"></button>
+    <button v-if="!isEditable" @click="deleteTask(task.id)" class="delete-button"> <img src="../assets/delete.svg"/> </button>
     <input type="checkbox" v-model="localTask.is_complete" @change="completeTask(localTask)" />
-    <label> Mark as Complete</label>
-    <span v-if="localTask.is_complete">🏆 Task Completed! 🏆</span>
+    <label> ✅ </label>
+    <!--<span v-if="localTask.is_complete">!isEditable</span> no funciona tampoco-->
   
   </article>
 </template>
 
 <style scoped>
-.card {
-  width: 300px;
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.12),
-    0 1px 2px rgba(0, 0, 0, 0.24);
-}
+
 h2 {
   color: #333;
   font-size: 24px;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
 h3 {
-  color: #444;
-  font-size: 20px;
+  font-size: 14px;
   margin-bottom: 0.5em;
 }
 
 p {
-  color: #666;
+  color: #333;
   font-size: 16px;
   margin-top: 0;
+  margin-bottom: 0.5em;
 }
+
 
 /* Stilizzazione degli input per il titolo e la descrizione in modalità di modifica */
 input[type='text'] {
@@ -105,8 +102,6 @@ input[type='text'] {
 /* Stilizzazione generale dei pulsanti per le azioni */
 button {
   cursor: pointer;
-  background-color: #007bff;
-  color: white;
   border: none;
   padding: 10px 20px;
   margin: 10px 5px 0 0;
@@ -122,26 +117,17 @@ button:hover {
 
 /* Specifica la differenziazione del colore del pulsante di eliminazione per maggiore chiarezza */
 
-.delete-button {
-  background-image: url('https://www.svgrepo.com/show/21045/delete-button.svg');
-  background-size: cover; /* Imposta la dimensione dell'immagine per coprire completamente il pulsante */
-  width: 10px; /* Imposta la larghezza dell'immagine */
-  height: 20px; /* Imposta l'altezza dell'immagine */
-  border: none; /* Rimuovi i bordi */
-  cursor: pointer; /* Cambia il cursore quando passi sopra il pulsante */
-}
+
 .delete-button:last-of-type:hover {
   background-color: #c82333;
 }
 
 /* Stili specifici quando i campi sono in modalità di modifica */
 div[v-if='isEditable'] {
-  background-color: #f9f9f9;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .card.is-complete {
-  background-color: #666; 
+  background-color: #f5e6b1b6; 
 }
 </style>
