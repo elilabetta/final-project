@@ -6,8 +6,10 @@ const userStore = useUserStore()
 <template>
     <div>
       <nav class="container">
-        <img class="container-logo" src="../assets/IronHacklogo.png" alt= ""> 
-        <p>ToDo List</p>
+        <div class="logo-title-container">
+          <img class="container-logo" src="../assets/IronHacklogo.png" alt="IronHack Logo"> 
+          <p>ToDo List</p>
+        </div>
         <ul class="navbar">
           <li class="nav-item"><a ref="../components/SignIn.vue"> Home </a></li>
           <li class="nav-item"><a ref="../components/Tasks.vue">Tasks</a></li>
@@ -30,14 +32,19 @@ const userStore = useUserStore()
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f5e6b1b6; 
+  background-color: #ffde82c8; 
   padding: 10px 20px;
+}
+
+.logo-title-container {
+  display: flex;
+  align-items: center; 
+  gap: 10px; 
 }
 
 .container-logo {
   height: 50px;
   border-radius: 5px;
-  margin-right: none;
 }
 .container p {
   font-size: 20px;

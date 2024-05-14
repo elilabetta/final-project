@@ -16,10 +16,6 @@ const completeTask = (id) => {
   taskStore.completeTask(id)
 }
 
-onMounted(() => {
-  taskStore.fetchTasks()
-})
-
 const addNewTask = () => {
   taskStore.addTask(title.value, description.value)
   title.value = ''
@@ -58,7 +54,7 @@ const saveTask = (id, updateFields) => {
           <label for="description">Task description:</label>
           <textarea id="description" v-model="description" placeholder="Description"></textarea>
         </div>
-        <button type="submit">Add Task</button>
+        <button type="submit">  Add Task</button>
       </form>
     </div>
 

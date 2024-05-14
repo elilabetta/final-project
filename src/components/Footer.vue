@@ -8,7 +8,7 @@
             <p>C/ de Pamplona, 96 - 08018, Barcelona - Spain </p>
         </address>
         <ul>
-            <li> <a href=https://www.youtube.com/c/ironhack-tech-school>YouTube</a> </li>
+            <li> <a href=https://www.youtube.com/c/ironhack-tech-school></a> Instagram</li>
             <li> <a href=https://www.facebook.com/theironhack>Facebook</a> </li>
             <li> <a href=https://www.instagram.com/ironhack>Instagram</a> </li>
         </ul>
@@ -25,7 +25,7 @@
     padding-right: 20px;
     justify-content: space-between;
     align-items: center;
-    background-color:#f5e6b1b6;
+    background-color:#ffde82c8;
 }
 .foot-style address{
     padding-left: 20px;

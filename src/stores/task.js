@@ -13,6 +13,7 @@ export const useTaskStore = defineStore('task', {
         .from('tasks')
         .select('*')
         .order('id', { ascending: false })
+        .eq('user_id', useUserStore().user.id)
       if (error) console.error('Error to get back the task:', error)
       else this.tasks = tasks
     },
@@ -53,15 +54,15 @@ export const useTaskStore = defineStore('task', {
       if (error) console.error('Error completing task:', error);
       else await this.fetchTasks(); 
     },
-    async completeTask(task) {
-      const { error } = await supabase
-        .from('tasks')
-        .update({ is_complete: !task.is_complete }) // Asegúrese de cambiar aquí basado en lo que ya tiene
-        .eq('id', task.id);
+   // async completeTask(task) {
+     // const { error } = await supabase
+       // .from('tasks')
+       // .update({ is_complete: !task.is_complete }) // Asegúrese de cambiar aquí basado en lo que ya tiene
+      //  .eq('id', task.id);
     
-      if (error) console.error('Error completing task:', error);
-      else await this.fetchTasks();  // Esto refrescará la lista y mostrará el estado actualizado de las tareas
-    }
+     // if (error) console.error('Error completing task:', error);
+      //else await this.fetchTasks();  // Esto refrescará la lista y mostrará el estado actualizado de las tareas
+    //}
     
   }
 })

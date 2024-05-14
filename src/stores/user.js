@@ -23,21 +23,20 @@ export const useUserStore = defineStore('user', {
       if (data) this.user = data.user;
     },
     async signIn(email, password){
-      const { user, error } = await supabase.auth.signInWithPassword ({
+      const { data, error } = await supabase.auth.signInWithPassword ({
         email: email,
         password: password
       });
       if (error) throw error;
-      if (user) this.user = user;
+      this.user = data.user;
       router.push('/');
     },
     async logOut(){
       const {error} = await supabase.auth.signOut();
-      const user = ref(null);
       if (error) {
         console.error('Log out error:', error.message);
       } else {
-        user.value = null;
+        this.user = null;
         router.push('/auth');
       }
     },

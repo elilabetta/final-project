@@ -88,8 +88,8 @@ p {
 }
 
 
-/* Stilizzazione degli input per il titolo e la descrizione in modalità di modifica */
-input[type='text'] {
+
+input {
   display: block;
   width: 100%;
   padding: 0.5em;
@@ -99,7 +99,7 @@ input[type='text'] {
   border-radius: 5px;
 }
 
-/* Stilizzazione generale dei pulsanti per le azioni */
+
 button {
   cursor: pointer;
   border: none;
@@ -115,7 +115,7 @@ button:hover {
   background-color: #0056b3;
 }
 
-/* Specifica la differenziazione del colore del pulsante di eliminazione per maggiore chiarezza */
+/* Effetto over/allerta quando cancelli*/
 
 
 .delete-button:last-of-type:hover {
@@ -128,6 +128,6 @@ div[v-if='isEditable'] {
   border-radius: 5px;
 }
 .card.is-complete {
-  background-color: #f5e6b1b6; 
+  background-color: #ffde82c8; 
 }
 </style>

@@ -21,7 +21,7 @@ onMounted(async () => {
       // redirect them to logout if the user is not there
       router.push({ path: '/auth' });
     } else {
-      await userStore.fetchUser();
+      await taskStore.fetchTasks();
       router.push({ path: '/' });
     }
   } catch (e) {
