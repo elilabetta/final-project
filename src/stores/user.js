@@ -18,7 +18,6 @@ export const useUserStore = defineStore('user', {
         email: email,
         password: password
       });
-      console.log("Check your inbox and confirm your email")
       if (error) throw error;
       if (data) this.user = data.user;
     },

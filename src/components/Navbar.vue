@@ -1,21 +1,50 @@
 <script setup>
 import { useUserStore } from '../stores/user.js'
 const userStore = useUserStore()
+
+const RadioPlayer = {
+  data() {
+    return {
+      audio: null,
+      isPlaying: false,
+      radioUrl: '../img/audio.mp3'
+    };
+  },
+  // Definisci la funzione per la riproduzione della radio
+  togglePlayback() {
+    if (!this.audio) {
+      this.audio = new Audio(this.radioUrl);
+      this.audio.play();
+      this.isPlaying = true;
+    } else {
+      if (this.audio.paused) {
+        this.audio.play();
+        this.isPlaying = true;
+      } else {
+        this.audio.pause();
+        this.isPlaying = false;
+      }
+    }
+  }
+};
+
+
 </script>
 
 <template>
     <div>
       <nav class="container">
         <div class="logo-title-container">
-          <img class="container-logo" src="../assets/IronHacklogo.png" alt="IronHack Logo"> 
+          <img class="container-logo" src="../assets/img/IronHacklogo.png" alt="IronHack Logo"> 
           <p>ToDo List</p>
         </div>
         <ul class="navbar">
-          <li class="nav-item"><a ref="../components/SignIn.vue"> Home </a></li>
-          <li class="nav-item"><a ref="../components/Tasks.vue">Tasks</a></li>
-          <li class="nav-item">Profile</li>
-          <li class="nav-item"><a ref="https://www.ironhack.com/es/contacto"> Contact Us</a></li>
-          <button class="logout-button" @click="userStore.logOut">Log Out</button>
+          <li class="nav-item"><a href="../components/SignIn.vue"> Home </a></li>
+
+          <button @click="togglePlayback">{{ isPlaying ? 'Pausa' : 'Ascolta' }}</button>
+         
+          <li class="nav-item"><a href="https://www.ironhack.com/es/contacto"> Contact Us</a></li>
+          <button class="logout-button" @click="userStore.logOut">【⏻】</button>
         </ul>
       </nav>
     </div>
@@ -54,20 +83,26 @@ const userStore = useUserStore()
 .navbar {
   list-style: none;
   display: flex;
-  gap: 20px; /* Spacing between nav items */
+  gap: 20px; 
+  align-items: center;
 }
 
 .nav-item {
-  margin-left: 20px; /* Spacing between nav items */
+  margin-left: 20px; 
   font-weight: bold;
-  color: grey;
+  color: #7c7c7c;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #7c7c7c;
 }
 
 .logout-button {
-  padding: 5px 10px;
+  font-size: 20px;
   cursor: pointer;
-  background-color: #007bff;
-  color: #fff;
+  background-color: transparent;
+  color: #4bcffb;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -75,6 +110,6 @@ const userStore = useUserStore()
 }
 
 .logout-button:hover {
-  background-color: #c0392b; /* Darker shade of red on hover */
+  background-color: #e85343; /* Darker shade of red on hover */
 }
 </style>

@@ -28,44 +28,67 @@ async function completeTask(task) {
   task.complete = !task.complete
   await taskStore.completeTask(task)
 }
-
 </script>
 
 <template>
-  <article class="card" :class="{ 'is-complete': localTask.is_complete }">
-    <h2 v-if="!localTask.is_complete">Ongoing Task</h2>
-    <span v-else> 🏆 Task Completed! 🏆</span>
-    <div v-if="!isEditable">
-      <h3>Task Title:</h3>
-      <p>{{ localTask.title }}</p>
-      <h3>Task Description:</h3>
-      <p>{{ localTask.description }}</p>
+  <article class="card"  :class="{ 'is-complete': localTask.is_complete, 'edit-mode': isEditable }">
+    <div class="container">
+      <h2 v-if="!localTask.is_complete">Ongoing Task</h2>
+      <span v-else class="completed-task"> 🏆Completed Task🏆</span>
+      <div v-if="!isEditable">
+        <h3>Task Title:</h3>
+        <p>{{ localTask.title }}</p>
+        <h3>Description:</h3>
+        <p>{{ localTask.description }}</p>
+      </div>
+      <div class="btn-style">
+        <div v-if="isEditable">
+          <label for="editTitle">Edit Title:</label>
+          <input type="text" v-model="localTask.title" />
+          <label for="editDescription">Edit Description:</label>
+          <input type="text" v-model="localTask.description" />
+        </div>
+        <button
+          v-if="!localTask.is_complete && !isEditable"
+          @click="
+            () => {
+              isEditable = !isEditable
+            }
+          "
+          class="icon-button">
+       <img src="../assets/img/pencil.png" alt="" />
+        </button>
+        <button v-if="isEditable" @click="saveTask(task.id, localTask)" class="icon-button">
+          <img src="../assets/img/save.png" alt="" />
+        </button>
+        <button @click="deleteTask(task.id)" class="icon-button">
+          <img src="../assets/img/bin.png" alt="" />
+        </button>
+        <div class="checkbox-image" v-if="!isEditable">
+          <input
+            type="checkbox"
+            v-model="localTask.is_complete"
+            @change="completeTask(localTask)"
+            class="icon-button"
+          />
+          <img src="../assets/img/complete.png" alt="" />
+        </div>
+      </div>
     </div>
-    <div v-if="isEditable"> <!-- he intentado poner aqui && !localTask.is_complete no funciona-->
-      <label for="editTitle">Edit Title:</label> 
-      <input type="text" v-model="localTask.title" />
-      <label for="editDescription">Edit Description:</label>
-      <input type="text" v-model="localTask.description" />
-    </div>
-    <button
-      @click="
-        () => {
-          isEditable = !isEditable
-        }
-      "
-    >
-    ✏️
-    </button>
-    <button v-if="isEditable" @click="saveTask(task.id, localTask)">Save!</button>
-    <button v-if="!isEditable" @click="deleteTask(task.id)" class="delete-button"> <img src="../assets/delete.svg"/> </button>
-    <input type="checkbox" v-model="localTask.is_complete" @change="completeTask(localTask)" />
-    <label> ✅ </label>
-    <!--<span v-if="localTask.is_complete">!isEditable</span> no funciona tampoco-->
-  
   </article>
 </template>
 
 <style scoped>
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+
 
 h2 {
   color: #333;
@@ -80,6 +103,15 @@ h3 {
   margin-bottom: 0.5em;
 }
 
+.completed-task {
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
 p {
   color: #333;
   font-size: 16px;
@@ -87,7 +119,9 @@ p {
   margin-bottom: 0.5em;
 }
 
-
+.card.edit-mode {
+  background-color: hwb(6 73% 1% / 0.816); /* Cambia il colore di sfondo quando in modalità di modifica */
+}
 
 input {
   display: block;
@@ -99,7 +133,30 @@ input {
   border-radius: 5px;
 }
 
+.btn-style {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10;
+  vertical-align: middle;
+}
+.checkbox-image {
+  display: flex;
+  align-items: center;
+}
 
+.checkbox-image input {
+  margin-right: 5px; /* Aggiungi spazio tra la casella di controllo e l'immagine se desideri */
+}
+
+.checkbox-image img {
+  max-width: 25px; /* Assicurati che l'immagine non superi la dimensione della casella di controllo */
+}
+
+img {
+  width: 25px;
+  height: 25px;
+}
 button {
   cursor: pointer;
   border: none;
@@ -107,19 +164,15 @@ button {
   margin: 10px 5px 0 0;
   border-radius: 5px;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  background-color: transparent;
 }
 
-/* Effetto hover per i pulsanti */
 button:hover {
-  background-color: #0056b3;
+  background-color: #3e83bf;
 }
-
-/* Effetto over/allerta quando cancelli*/
-
 
 .delete-button:last-of-type:hover {
-  background-color: #c82333;
+  background-color: #e85343; /* Darker shade of red on hover */
 }
 
 /* Stili specifici quando i campi sono in modalità di modifica */
@@ -128,6 +181,20 @@ div[v-if='isEditable'] {
   border-radius: 5px;
 }
 .card.is-complete {
-  background-color: #ffde82c8; 
+  background-color: #ffde82c8;
+}
+.icon-button {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  line-height: 24px;
+  cursor: pointer;
+}
+.delete-button {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  line-height: 24px;
+  cursor: pointer;
 }
 </style>

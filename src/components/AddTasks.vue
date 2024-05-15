@@ -36,53 +36,54 @@ const saveTask = (id, updateFields) => {
   title.value = ''
   description.value = ''
 }
-
 </script>
 
 <template>
-
   <section class="page-bg">
     <div class="container">
-    <div class="card">
-      <form @submit.prevent="addNewTask" class="task-form">
-        <h1>My New Cool Task</h1>
-        <div class="form-group">
-          <label for="title">Task Title:</label>
-          <input id="title" v-model="title" placeholder="Title" />
-        </div>
-        <div class="form-group">
-          <label for="description">Task description:</label>
-          <textarea id="description" v-model="description" placeholder="Description"></textarea>
-        </div>
-        <button type="submit">  Add Task</button>
-      </form>
-    </div>
+      <div class="card">
+        <form @submit.prevent="addNewTask" class="task-form">
+          <h1>My New Cool Task</h1>
+          <div class="form-group">
+            <label for="title">Task Title:</label>
+            <input id="title" v-model="title" placeholder="Title" />
+          </div>
+          <div class="form-group">
+            <label for="description">Task description:</label>
+            <textarea id="description" v-model="description" placeholder="Description"></textarea>
+          </div>
+          <button type="submit">Add Task</button>
+        </form>
+      </div>
 
-    <div v-if="!tasks" class="card">
-      <p>No task available</p>
-    </div>
+      <div v-if="!tasks" class="card">
+        <p>No task available</p>
+      </div>
 
-    <div class="task-list">
-      <div v-for="task in tasks" :key="task.id" >
-        <TaskCard :task="task" @edit-task="editTask" @complete-task="completeTask" @delete-task="deleteTask" @save-task="saveTask"/>
+      <div class="task-list">
+        <div v-for="task in tasks" :key="task.id">
+          <TaskCard
+            :task="task"
+            @edit-task="editTask"
+            @complete-task="completeTask"
+            @delete-task="deleteTask"
+            @save-task="saveTask"
+          />
+        </div>
       </div>
     </div>
-  </div>
-
   </section>
-  
 </template>
 
 <style scoped>
-
 .page-bg {
   width: 100%;
   height: auto;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-image: url('../assets/ToDoList.webp');
-  background-size: cover; 
+  background-image: url('../assets/img/ToDoList.webp');
+  background-size: cover;
   background-position: center;
 }
 
@@ -108,13 +109,13 @@ const saveTask = (id, updateFields) => {
     0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-h1{
+h1 {
   font-size: 24px;
   font-weight: bold;
   text-align: center;
   padding: 10px;
   margin-bottom: 20px;
-  color: #333;
+  color: #565656d9;
 }
 
 .task-form {
@@ -157,9 +158,8 @@ h1{
 }
 
 .task-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  display: flex;
+  flex-direction: row;
   gap: 20px;
 }
-
 </style>

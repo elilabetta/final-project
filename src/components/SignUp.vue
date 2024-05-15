@@ -5,61 +5,82 @@ const userStore = useUserStore()
 const email = ref('')
 const password = ref('')
 const confirmPassword = ref('')
+const alertVisible = ref(false)
+
 
 //faccio qua la logica/funzione perchè chiamiamo il router.vue siamo in vue ed è più comodo, altrimenti tutta la logica va in user.js
 
 function signUp(email, password, confirmPassword) {
-  if (password === confirmPassword) userStore.signUp(email, password)
-  else console.error('Las passwords no son iguales')
+  if (password === confirmPassword) {
+    userStore.signUp(email, password)
+    alertVisible.value = true;
+  } else alert('Password do not match')
 }
+
 </script>
 
 <template>
-
-<div class="container"> 
-  <img src="../assets/ToDoList.webp" alt=""/>
-  <form @submit.prevent="signUp(email, password, confirmPassword)" id="form-up">
-    <article class="form">
-      <h1>Sign Up</h1>
-      <div class="style">
-        <input v-model="email" type="email" id="email" placeholder="Email" />
-      </div>
-      <div class="style">
-        <input v-model="password" type="password" id="password" placeholder="Password" />
-      </div>
-      <div class="style">
-        <input
-          v-model="confirmPassword"
-          type="password"
-          id="confirmPassword"
-          placeholder="Confirm password"
-        />
-      </div>
-      <div class="style">
-        <button type="submit">Sign Up</button>
-      </div>
-    </article>
-  </form>
-</div>
-  
+  <section>
+    <div class="custom-alert" v-if="alertVisible"> 
+      <button @click="()=>alertVisible = false"> ✖️ </button>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <img src="../assets/img/ToDoList.webp" alt="" />
+      <form @submit.prevent="signUp(email, password, confirmPassword)" id="form-up">
+        <article class="form">
+          <h1>Sign Up</h1>
+          <div class="style">
+            <input v-model="email" type="email" id="email" placeholder="Email" />
+          </div>
+          <div class="style">
+            <input v-model="password" type="password" id="password" placeholder="Password" />
+          </div>
+          <div class="style">
+            <input
+              v-model="confirmPassword"
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm password"
+            />
+          </div>
+          <div class="style">
+            <button type="submit">Sign Up</button>
+          </div>
+        </article>
+      </form>
+    </div>
+  </section>
 </template>
 
 <style scoped>
+.custom-alert {
+  background-color: #aba8a8d9;
+  color: whitesmoke;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #565656d9;
+  margin-top: 30px;
+}
 
-.container{
+.custom-alert button {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 20%;
 }
 
-img{
+img {
   width: 70%;
   height: 400px;
   margin-bottom: 20px;
   border-radius: 10px;
-  margin-top: 20%;
 }
 
 #form-up {
@@ -68,21 +89,21 @@ img{
   padding: 20px;
   background-color: #ffde82c8;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
- h1{
+h1 {
   font-size: 20px;
-  color:grey;
+  color: #565656d9;
   text-align: center;
   padding: 5px;
- }
+}
 
- .stylish-input{
+.stylish-input {
   margin-bottom: 15px; /* Spazio tra gli input */
 }
 
-input{
+input {
   width: 100%;
   padding: 10px;
   margin-top: 5px;

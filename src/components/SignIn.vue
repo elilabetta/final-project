@@ -19,7 +19,7 @@ async function signIn(email, password){
 <template>
 
   <div class="container">
-    <img src="../assets/ToDoList.webp" alt=""/>
+    <img src="../assets/img/ToDoList.webp" alt=""/>
     <form @submit.prevent="signIn(email, password)" id="form">
       <h1>Sign In</h1>
       <div class="style">

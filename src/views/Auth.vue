@@ -12,45 +12,49 @@ function toggleUser() {
 
 <template>
   <section>
-    <article v-if="hasUser">
+    <div v-if="hasUser">
       <SignIn></SignIn>
-      <div class="container">
-        <img src="../assets/Scream.jpeg" alt=""/>
+      <article class="account-reg">
+        <img src="../assets/img/urlo.jpeg" alt=""/>
         <p @click="toggleUser">I don't have an account</p>
-      </div>
-    </article>
-    <article v-else>
+      </article>
+    </div>
+    <div v-else>
       <SignUp></SignUp>
-      <p @click="toggleUser"> I already have an account!</p>
-    </article>
+      <article class="account-reg">
+       <p @click="toggleUser">I already have an account</p>
+       <img src="../assets/img/user.png" alt=""/>
+      </article>
+    </div>
   
   </section>
 </template>
 
 <style scoped>
 
-.container {
-  display: flex; 
-  align-items: center; 
-  margin-left: 20%;
-  width: 80%;
-  height: 300px;
-  margin-top: 60px;
+.container{
+  display: flex;
+  flex-direction: column;
+  margin:auto;
 }
-
 p{
-  margin-top: 200px;
   padding-left: 15px;
   font-weight: bold;
-  color:#777777e1;
+  color: #565656d9;
   font-size: 20px;
-  margin-bottom: 20%;
 }
-img{
-  margin-top:30px;
-  width: 60px;
+.account-reg{
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+}
+
+.account-reg img{
+  width: 30px;
   height:auto ;
-  margin-left: 150px;
-  border-radius: 100%;
 }
+
 </style>
