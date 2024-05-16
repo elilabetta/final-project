@@ -10,7 +10,7 @@
 
       <li>
         <a href="https://www.youtube.com/c/ironhack-tech-school"
-          ><img src="../assets/img/insta.png" alt=""
+          ><img src= "../assets/img/youtube.png" alt=""
         /></a>
       </li>
       <li>
@@ -20,7 +20,7 @@
       </li>
       <li>
         <a href="https://www.instagram.com/ironhack"
-          ><img src="../assets/img/youtube.png" alt=":YouTube:"
+          ><img src= "../assets/img/instagram.png"alt=":YouTube:"
         /></a>
       </li>
     </ul>
