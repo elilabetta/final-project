@@ -68,19 +68,20 @@ function signUp(email, password, confirmPassword) {
   margin-left: 10px;
   cursor: pointer;
 }
-
-.container {
+.container{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding:30%, 0%;
 }
 
-img {
-  width: 70%;
-  height: 400px;
+img{
+  width: 50%;
+  max-width: 400px;
   margin-bottom: 20px;
   border-radius: 10px;
+  margin-top: 10%;
 }
 
 #form-up {

@@ -44,15 +44,15 @@ async function signIn(email, password){
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 40%;
+  padding:30%, 0%;
 }
 
 img{
-  width: 70%;
-  height: 400px;
+  width: 50%;
+  max-width: 400px;
   margin-bottom: 20px;
   border-radius: 10px;
-  margin-top: 20%;
+  margin-top: 10%;
 }
 
 #form{

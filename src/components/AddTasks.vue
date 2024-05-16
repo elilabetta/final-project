@@ -125,6 +125,7 @@ const saveTask = (id, updateFields) => {
 .task-form {
   width: 100%;
   max-width: 400px;
+  padding:30px
 }
 
 .form-group {
