@@ -7,14 +7,15 @@
       <p>C/ de Pamplona, 96 - 08018, Barcelona - Spain</p>
     </address>
     <ul>
+
       <li>
         <a href="https://www.youtube.com/c/ironhack-tech-school"
-          ><img src="../assets/img/Insta.png" alt=""
+          ><img src="../assets/img/insta.png" alt=""
         /></a>
       </li>
       <li>
         <a href="https://www.facebook.com/theironhack"
-          ><img src="../assets/img/fb.png" alt=""
+          ><img src="../assets/img/FB.png" alt=""
         /></a>
       </li>
       <li>
@@ -28,38 +29,50 @@
 
 <style scoped>
 .foot-style {
+  position: relative;
   display: flex;
+  flex-wrap: nowrap;
   flex-direction: row;
-  width: 100vw;
-  height: 8vh;
-  padding-top: 25px;
-  padding-right: 20px;
-  justify-content: space-between;
+  width: 100%;
+  justify-content: flex-end;
   align-items: center;
   background-color: #ffde82c8;
 }
 .foot-style address {
-  padding-left: 20px;
-  padding-right: 20px;
-  font-style: normal;
-  font-size: 0.8em;
-}
+  width: 100%; 
+  padding: 10px;
+    max-width: none; 
+    text-align: left; 
+  }
+ 
 
 ul {
   list-style-type: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 30px;
+
 }
+
 ul a {
   text-decoration: none;
 }
 
+p {
+  color:#7c7c7c;
+}
+
 img {
-    width: 40px;
-    height: auto;
-    background-color:#ffde82c8;
-    border-radius: 10%;
+    height: 4vh;
+    gap: 2%;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+@media (max-width: 375px) {
+  .foot-style address { display: none;
+  }
+  .foot-style{
+    flex-wrap: wrap;
+  }
 }
 </style>

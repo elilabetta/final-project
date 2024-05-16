@@ -43,7 +43,7 @@ const saveTask = (id, updateFields) => {
     <div class="container">
       <div class="card">
         <form @submit.prevent="addNewTask" class="task-form">
-          <h1>My New Cool Task</h1>
+          <h1 class="color">My New Cool Task</h1>
           <div class="form-group">
             <label for="title">Task Title:</label>
             <input id="title" v-model="title" placeholder="Title" />
@@ -79,8 +79,6 @@ const saveTask = (id, updateFields) => {
 .page-bg {
   width: 100%;
   height: auto;
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
   background-image: url('../assets/img/ToDoList.webp');
   background-size: cover;
@@ -88,34 +86,40 @@ const saveTask = (id, updateFields) => {
 }
 
 .container {
-  padding: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  padding: 20px;
 }
 
 .card {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
   width: 300px;
-  margin: 30px;
   border: 1px solid #ccc;
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.12),
     0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: transform 0.2s;
 }
 
-h1 {
+.card:hover {
+  transform: scale(1.05);
+}
+
+.color {
   font-size: 24px;
   font-weight: bold;
   text-align: center;
   padding: 10px;
   margin-bottom: 20px;
-  color: #565656d9;
+  background: linear-gradient(45deg, #ffde82c8, #e85343);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
 }
 
 .task-form {
@@ -150,16 +154,26 @@ h1 {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: transform 0.2s;
 }
 
 .task-form button:hover {
-  background-color: #0056b3;
+  transform: scale(1.1);
 }
 
 .task-list {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 20px;
+  justify-content:space-around;
+  padding: 20px;
+}
+@media (max-width: 375px) {
+  .task-list {
+    flex-direction: column;
+    align-items: center;
+    
+  }
 }
 </style>

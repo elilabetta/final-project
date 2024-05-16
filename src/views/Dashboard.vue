@@ -7,7 +7,7 @@ import AddTasks from '../components/AddTasks.vue'
 
 <template>
     <Navbar></Navbar>
-    <AddTasks></AddTasks>
+    <AddTasks> </AddTasks>
     <Footer></Footer>
 </template>
 

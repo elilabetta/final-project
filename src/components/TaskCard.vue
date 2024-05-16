@@ -34,7 +34,7 @@ async function completeTask(task) {
   <article class="card"  :class="{ 'is-complete': localTask.is_complete, 'edit-mode': isEditable }">
     <div class="container">
       <h2 v-if="!localTask.is_complete">Ongoing Task</h2>
-      <span v-else class="completed-task"> 🏆Completed Task🏆</span>
+      <span v-else class="completed-task"> Completed Task 🏆</span>
       <div v-if="!isEditable">
         <h3>Task Title:</h3>
         <p>{{ localTask.title }}</p>
@@ -46,7 +46,7 @@ async function completeTask(task) {
           <label for="editTitle">Edit Title:</label>
           <input type="text" v-model="localTask.title" />
           <label for="editDescription">Edit Description:</label>
-          <input type="text" v-model="localTask.description" />
+          <textarea type="text" v-model="localTask.description" />
         </div>
         <button
           v-if="!localTask.is_complete && !isEditable"
@@ -82,13 +82,20 @@ async function completeTask(task) {
 .card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 10px;
+  padding: 30px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
 }
 
+.card:hover {
+  transform: scale(1.05);
+}
 
 h2 {
   color: #333;
@@ -108,7 +115,6 @@ h3 {
   font-size: 24px;
   font-weight: bold;
   text-align: center;
-  padding: 10px;
   margin-bottom: 10px;
 }
 
@@ -120,7 +126,8 @@ p {
 }
 
 .card.edit-mode {
-  background-color: hwb(6 73% 1% / 0.816); /* Cambia il colore di sfondo quando in modalità di modifica */
+  background-color: hwb(6 73% 1% / 0.816); 
+  padding-left: 15%;
 }
 
 input {
@@ -146,11 +153,11 @@ input {
 }
 
 .checkbox-image input {
-  margin-right: 5px; /* Aggiungi spazio tra la casella di controllo e l'immagine se desideri */
+  margin-right: 5px; 
 }
 
 .checkbox-image img {
-  max-width: 25px; /* Assicurati che l'immagine non superi la dimensione della casella di controllo */
+  max-width: 25px; 
 }
 
 img {
@@ -165,17 +172,17 @@ button {
   border-radius: 5px;
   font-size: 16px;
   background-color: transparent;
+  transition: transform 0.2s;
 }
 
 button:hover {
-  background-color: #3e83bf;
+  transform: scale(1.1);
 }
 
 .delete-button:last-of-type:hover {
   background-color: #e85343; /* Darker shade of red on hover */
 }
 
-/* Stili specifici quando i campi sono in modalità di modifica */
 div[v-if='isEditable'] {
   padding: 20px;
   border-radius: 5px;
@@ -196,5 +203,24 @@ div[v-if='isEditable'] {
   font-size: 24px;
   line-height: 24px;
   cursor: pointer;
+}
+
+
+@media (max-width: 375px) {
+  .card {
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  transition: transform 0.2s;
+  }
 }
 </style>

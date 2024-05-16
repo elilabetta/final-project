@@ -2,94 +2,72 @@
 import { useUserStore } from '../stores/user.js'
 const userStore = useUserStore()
 
-const RadioPlayer = {
-  data() {
-    return {
-      audio: null,
-      isPlaying: false,
-      radioUrl: '../img/audio.mp3'
-    };
-  },
-  // Definisci la funzione per la riproduzione della radio
-  togglePlayback() {
-    if (!this.audio) {
-      this.audio = new Audio(this.radioUrl);
-      this.audio.play();
-      this.isPlaying = true;
-    } else {
-      if (this.audio.paused) {
-        this.audio.play();
-        this.isPlaying = true;
-      } else {
-        this.audio.pause();
-        this.isPlaying = false;
-      }
-    }
-  }
-};
+const urlRadio = 'https://emisora.org.es/'
 
-
+function openRadioPlayer() {
+  window.open(urlRadio, '_blank', 'noopener,noreferrer')
+}
 </script>
 
 <template>
-    <div>
-      <nav class="container">
-        <div class="logo-title-container">
-          <img class="container-logo" src="../assets/img/IronHacklogo.png" alt="IronHack Logo"> 
-          <p>ToDo List</p>
-        </div>
-        <ul class="navbar">
-          <li class="nav-item"><a href="../components/SignIn.vue"> Home </a></li>
+  <div>
+    <nav class="container">
+      <div class="logo-title-container">
+        <img class="container-logo" src="../assets/img/ironH.jpeg" alt="IronHack Logo" />
+        <p>ToDo List</p>
+      </div>
+      <ul class="navbar">
+        <li class="nav-item"><a href="../components/SignIn.vue"> Home</a></li>
 
-          <button @click="togglePlayback">{{ isPlaying ? 'Pausa' : 'Ascolta' }}</button>
-         
-          <li class="nav-item"><a href="https://www.ironhack.com/es/contacto"> Contact Us</a></li>
-          <button class="logout-button" @click="userStore.logOut">【⏻】</button>
-        </ul>
-      </nav>
-    </div>
+        <li class="nav-item">
+          <a href="https://emisora.org.es/" target="_blank" rel="noopener noreferrer"
+            >Music</a
+          >
+        </li>
+
+        <li class="nav-item"><a href="https://www.ironhack.com/es/contacto"> Contact Us</a></li>
+        <button class="logout-button" @click="userStore.logOut">【⏻】</button>
+      </ul>
+    </nav>
+  </div>
 </template>
 
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 .container {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ffde82c8; 
+  background-color: #ffde82c8;
   padding: 10px 20px;
 }
 
 .logo-title-container {
   display: flex;
-  align-items: center; 
-  gap: 10px; 
+  align-items: center;
+  gap: 10px;
 }
 
 .container-logo {
-  height: 50px;
-  border-radius: 5px;
+  height: 7vh;
+  border-radius: 50%;
 }
+
 .container p {
   font-size: 20px;
   font-weight: bold;
-  color:#4bcffb;
+  color: #7c7c7c;
 }
 .navbar {
   list-style: none;
   display: flex;
-  gap: 20px; 
+  gap: 20px;
   align-items: center;
 }
 
 .nav-item {
-  margin-left: 20px; 
-  font-weight: bold;
+  margin-left: 20px;
   color: #7c7c7c;
 }
 
@@ -102,9 +80,9 @@ const RadioPlayer = {
   font-size: 20px;
   cursor: pointer;
   background-color: transparent;
-  color: #4bcffb;
+  color: #7c7c7c;
   border: none;
-  border-radius: 4px;
+  border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -112,4 +90,11 @@ const RadioPlayer = {
 .logout-button:hover {
   background-color: #e85343; /* Darker shade of red on hover */
 }
+@media (max-width: 375px) {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 </style>
