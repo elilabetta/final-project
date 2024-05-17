@@ -12,19 +12,12 @@ function openRadioPlayer() {
 <template>
   <div>
     <nav class="container">
-      <div class="logo-title-container">
-        <img class="container-logo" src="../assets/img/ironH.jpeg" alt="IronHack Logo" />
+      <div class="logo">
+        <img class="container-logo" src="../assets/img/iron.jpeg" alt=""/>
         <p>ToDo List</p>
       </div>
       <ul class="navbar">
-        <li class="nav-item"><a href="../components/SignIn.vue"> Home</a></li>
-
-        <li class="nav-item">
-          <a href="https://emisora.org.es/" target="_blank" rel="noopener noreferrer"
-            >Music</a
-          >
-        </li>
-
+        <li class="nav-item"><a href="https://emisora.org.es/" target="_blank" rel="noopener noreferrer">Music</a></li>
         <li class="nav-item"><a href="https://www.ironhack.com/es/contacto"> Contact Us</a></li>
         <button class="logout-button" @click="userStore.logOut">【⏻】</button>
       </ul>
@@ -43,7 +36,7 @@ function openRadioPlayer() {
   padding: 10px 20px;
 }
 
-.logo-title-container {
+.logo {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -94,6 +87,10 @@ function openRadioPlayer() {
   .container {
     flex-direction: column;
     align-items: flex-start;
+  }
+  .nav-item a {
+    font-size: 15px;
+    text-align: right;
   }
 }
 

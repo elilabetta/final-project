@@ -15,7 +15,7 @@
       </li>
       <li>
         <a href="https://www.facebook.com/theironhack"
-          ><img src="../assets/img/FB.png" alt=""
+          ><img src="../assets/img/fb.png" alt=""
         /></a>
       </li>
       <li>

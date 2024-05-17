@@ -80,7 +80,7 @@ const saveTask = (id, updateFields) => {
   width: 100%;
   height: auto;
   box-sizing: border-box;
-  background-image: url('../assets/img/ToDoList.webp');
+  background-image: url('../assets/img/todo.webp');
   background-size: cover;
   background-position: center;
 }
@@ -174,7 +174,19 @@ const saveTask = (id, updateFields) => {
   .task-list {
     flex-direction: column;
     align-items: center;
+  }
+  .card{
+    transition: none;
+  }
+  .card:hover{
+    transform: none;
     
+  }
+  .task-form button {
+    transition: none;
+  }
+  .task-form button:hover{
+    transform: none;
   }
 }
 </style>

@@ -7,22 +7,22 @@ const password = ref('')
 const confirmPassword = ref('')
 const alertVisible = ref(false)
 
-
 //faccio qua la logica/funzione perchè chiamiamo il router.vue siamo in vue ed è più comodo, altrimenti tutta la logica va in user.js
 
 function signUp(email, password, confirmPassword) {
   if (password === confirmPassword) {
     userStore.signUp(email, password)
-    alertVisible.value = true;
+    alertVisible.value = true
   } else alert('Password do not match')
 }
-
 </script>
 
 <template>
   <section>
-    <div class="custom-alert" v-if="alertVisible"> 
-      <button @click="()=>alertVisible = false"> ✖️ </button>
+    <div class="custom-alert" v-if="alertVisible">
+      <p>Account created successfully</p>
+      <p>Check your inbox to make the access!</p>
+      <button @click="() => (alertVisible = false)">✖️</button>
     </div>
   </section>
   <section>
@@ -56,27 +56,33 @@ function signUp(email, password, confirmPassword) {
 
 <style scoped>
 .custom-alert {
-  background-color: #aba8a8d9;
-  color: whitesmoke;
-  padding: 10px;
+  background-color: #f2e6e6db;
+  color: #565656d9;
   border-radius: 10px;
-  border: 1px solid #565656d9;
-  margin-top: 30px;
+  border: none;
+  margin: 30px;
+  padding: 15px;
+  text-align: center;
 }
 
 .custom-alert button {
-  margin-left: 10px;
-  cursor: pointer;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
 }
-.container{
+
+.custom-alert button:hover {
+  background-color: #565656d9;
+}
+
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding:30%, 0%;
+  padding: 30%, 0%;
 }
 
-img{
+img {
   width: 50%;
   max-width: 400px;
   margin-bottom: 20px;
@@ -128,5 +134,4 @@ button {
 button:hover {
   background-color: #0056b3; /* Cambio colore al hover */
 }
-
 </style>
