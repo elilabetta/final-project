@@ -33,3 +33,12 @@ npm run build
 ```sh
 npm run lint
 ```
+Tabnine
+ESlint
+Prittier
+netlify
+Vue 3 composition API
+Supabase 2.0
+GitHub
+Trello
+https://ironhack-todo-list.netlify.app

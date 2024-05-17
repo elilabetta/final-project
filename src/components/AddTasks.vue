@@ -1,17 +1,13 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useTaskStore } from '@/stores/task'
-import { useUserStore } from '@/stores/user'
 import { storeToRefs } from 'pinia'
-import { useRouter } from 'vue-router'
 import TaskCard from '../components/TaskCard.vue'
 
 const title = ref('')
 const description = ref('')
-const userStore = useUserStore()
 const taskStore = useTaskStore()
 const { tasks } = storeToRefs(taskStore)
-const router = useRouter()
 const completeTask = (id) => {
   taskStore.completeTask(id)
 }
@@ -21,6 +17,7 @@ const addNewTask = () => {
   title.value = ''
   description.value = ''
 }
+
 const deleteTask = (id) => {
   taskStore.deleteTask(id)
 }
@@ -46,20 +43,18 @@ const saveTask = (id, updateFields) => {
           <h1 class="color">My New Cool Task</h1>
           <div class="form-group">
             <label for="title">Task Title:</label>
-            <input id="title" v-model="title" placeholder="Title" />
+            <input id="title" v-model="title" placeholder="Title" required />
           </div>
           <div class="form-group">
             <label for="description">Task description:</label>
-            <textarea id="description" v-model="description" placeholder="Description"></textarea>
+            <textarea id="description" v-model="description" placeholder="Description" required />
           </div>
-          <button type="submit">Add Task</button>
+          <button v-if="!alertTask" type="submit">Add Task</button>
         </form>
       </div>
-
       <div v-if="!tasks" class="card">
         <p>No task available</p>
       </div>
-
       <div class="task-list">
         <div v-for="task in tasks" :key="task.id">
           <TaskCard
@@ -125,11 +120,19 @@ const saveTask = (id, updateFields) => {
 .task-form {
   width: 100%;
   max-width: 400px;
-  padding:30px
+  padding: 30px;
 }
 
 .form-group {
   margin-bottom: 15px;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  resize: none;
+  overflow: auto; 
+  box-sizing: border-box; 
 }
 
 .form-group label {
@@ -167,7 +170,7 @@ const saveTask = (id, updateFields) => {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content:space-around;
+  justify-content: space-around;
   padding: 20px;
 }
 @media (max-width: 375px) {
@@ -175,17 +178,16 @@ const saveTask = (id, updateFields) => {
     flex-direction: column;
     align-items: center;
   }
-  .card{
+  .card {
     transition: none;
   }
-  .card:hover{
+  .card:hover {
     transform: none;
-    
   }
   .task-form button {
     transition: none;
   }
-  .task-form button:hover{
+  .task-form button:hover {
     transform: none;
   }
 }

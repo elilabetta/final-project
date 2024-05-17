@@ -140,6 +140,14 @@ input {
   border-radius: 5px;
 }
 
+textarea {
+  width: 100%;
+  height: 100px;
+  resize: none; 
+  overflow: auto; 
+  box-sizing: border-box; 
+}
+
 .btn-style {
   display: flex;
   justify-content: center;

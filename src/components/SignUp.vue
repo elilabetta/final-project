@@ -107,7 +107,7 @@ h1 {
 }
 
 .stylish-input {
-  margin-bottom: 15px; /* Spazio tra gli input */
+  margin-bottom: 15px; 
 }
 
 input {
@@ -115,7 +115,7 @@ input {
   padding: 10px;
   margin-top: 5px;
   border: 1px solid #ccc;
-  border-radius: 5px; /* Bordi arrotondati per gli input */
+  border-radius: 5px;
 }
 
 button {
@@ -132,6 +132,6 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3; /* Cambio colore al hover */
+  background-color: #0056b3; 
 }
 </style>
