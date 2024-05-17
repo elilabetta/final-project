@@ -27,7 +27,7 @@ function signUp(email, password, confirmPassword) {
   </section>
   <section>
     <div class="container">
-      <img src="../assets/img/ToDoList.webp" alt="" />
+      <img src="../assets/img/todo.webp" alt="" />
       <form @submit.prevent="signUp(email, password, confirmPassword)" id="form-up">
         <article class="form">
           <h1>Sign Up</h1>
