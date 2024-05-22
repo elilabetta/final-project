@@ -30,7 +30,7 @@ export const useTaskStore = defineStore('task', {
       const { error } = await supabase.from('tasks').update(updatedFields).eq('id', id)
       if (error) console.error('Error updating task:', error.message)
       else await this.fetchTasks()
-      router.push('/') // Ricarica la lista delle task dopo l'aggiornamento
+      router.push('/') 
     },
     async deleteTask(id) {
       const { error } = await supabase.from('tasks').delete().eq('id', id)
