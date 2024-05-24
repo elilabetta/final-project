@@ -1,6 +1,8 @@
 # final-project
 
-https://ironhack-todo-list.netlify.app
+application page: https://ironhack-todo-list.netlify.app
+
+presentation: https://docs.google.com/presentation/d/1exJi43YToEmNB6H5KqImPlmRjxUZLHgiRW96EgHUNpw/edit?usp=sharing
 
 
 ## Technologies used in this project
@@ -55,8 +57,10 @@ The task management system is divided into two main components:
   Also those actions are handled within EMIT
   · Edit Tasks: Tasks can be edited to update details or correct mistakes.
   · Delete Tasks: Users can remove tasks that are no longer needed.
-  · Mark as Completed: Users can mark tasks as completed, helping them keep track of their progress. To maintain simplicity and clarity (stick with KISS and DRY principles), a ternary operator combined with a CSS effect is used to indicate completion status, rather than employing a filter method.
+  · Mark as Completed: Users can mark tasks as completed, helping them keep track of their progress. To maintain simplicity and clarity (stick with KISS and DRY principles), a vModelCheckbox combined with a CSS effect have been used used to indicate completion status, rather than employing a filter method.
 
+- ALERT FUNTIONS:
+  · To inform users about extra actions to take when registering as user for the first time (alert function has been used) and to inform users  if a requiered field is not completed correctly (requiered field added to HTML on cards' form).
 
 - RESPONSIVE DESIGN: 
 
